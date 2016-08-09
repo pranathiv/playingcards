@@ -4,7 +4,7 @@
 1. [Design](#Design)
 
 ### Design
-Our design has three main classes:
+Our design has four classes:
 
 1. Card
     * Data Members
