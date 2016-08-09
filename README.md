@@ -27,11 +27,11 @@ Our design has three main classes:
         * removeAll(cardOfASuit) -> boolean
         * shuffle -> void
         * cardsLeft -> int
-        * deal
+        * deal -> List(Cards)
 4. Hand
     * Data Members
       * cards -> List(Cards)
     * Methods
-      * add
-      * remove
+      * add -> boolean
+      * remove -> boolean
       * count -> int
