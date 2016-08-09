@@ -8,25 +8,30 @@ Our design has three main classes:
 
 1. Card
     * Data Members
-       * suit
-       * value
+       * suit -> int
+       * face -> int
     * Methods
-       * ?
-2. Deck
+       * equals(anotherCard) -> boolean
+2. Pack
     * Data Members
-        * cards
+        * cards -> List
     * Methods
-        * add
-        * remove
-        * removeAll
-        * shuffle
-        * cardsLeft
+        * generateAllSuits() -> List(Cards)
+        * generateJokers() -> List(Cards)
+3. Deck
+    * Data Members
+        * cards -> List(Cards)
+    * Methods
+        * add(pack) -> boolean
+        * remove(card) -> boolean
+        * removeAll(cardOfASuit) -> boolean
+        * shuffle -> void
+        * cardsLeft -> int
         * deal
-3. Hand
+4. Hand
     * Data Members
-      * cards
+      * cards -> List(Cards)
     * Methods
-      * cardsInHand
-      * addCard
-      * removeCard
-      * count
+      * add
+      * remove
+      * count -> int
