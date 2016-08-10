@@ -51,9 +51,13 @@ public class Deck {
 		for (Card c : this.cards) {
 			if (c.getSuit() == suit) {
 				cardsOfSuit.add(c);
-				this.remove(c);
 			}
 		}
+		
+		for (Card c : cardsOfSuit) {
+			this.remove(c);
+		}
+		
 		return cardsOfSuit;
 	}
 	

@@ -1,6 +1,7 @@
 package structures;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Hand {
@@ -38,6 +39,12 @@ public class Hand {
 		return c;
 	}
 	
+	public Card draw(int n) {
+		Card c = this.cards.get(n);
+		this.removeCard(c);
+		return c;
+	}
+	
 	/*
 	 *  @return returns the card in the hand
 	 */
@@ -53,4 +60,7 @@ public class Hand {
 		return this.cards.toString();
 	}
 	
+	public void shuffle() {
+		Collections.shuffle(this.cards);
+	}	
 }
