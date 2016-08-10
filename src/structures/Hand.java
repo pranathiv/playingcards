@@ -1,12 +1,19 @@
 package structures;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Hand {
 	private List<Card> cards;
 	
 	public Hand(){
+		this.cards = new ArrayList<Card>();
 	}
+	
+	public Hand(List<Card> cards) {
+		this.cards = cards;
+	}
+	
 	/**
 	 * Adds a card to the Hand
 	 * @param num Position of the card.
@@ -38,6 +45,10 @@ public class Hand {
 	 */
 	public List<Card> cardsInHand(){
 		return cards;
+	}
+	
+	public String toString() {
+		return this.cards.toString();
 	}
 	
 }

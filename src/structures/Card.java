@@ -1,20 +1,30 @@
 package structures;
 
-/**
- * 
- * @author ashish
- *
- */
 public class Card {
-	private Suit suit;
-	private Face face;
+	public static int ACE = 1;
+	public static int JACK = 11;
+	public static int QUEEN = 12;
+	public static int KING = 13;
+	public static int JOKER = 14;
+	
+	public static int SPADES = 0;
+	public static int HEARTS = 1;
+	public static int CLUBS = 2;
+	public static int DIAMONDS = 3;
+	
+	private static String[] FACE_NAMES = {"", "Ace", "Two", "Three", "Four", "Five", "Six",
+			"Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"};
+	private static String[] SUIT_NAMES = {"Spades", "Hearts", "Clubs", "Diamonds"};
+	
+	private int suit;
+	private int face;
 	
 	/**
 	 * Constructor for Card class.
 	 * @param suit Suit of the card.
 	 * @param face Face value of the card.
 	 */
-	public Card(Suit suit, Face face) {
+	public Card(int suit, int face) {
 		this.suit = suit;
 		this.face = face;
 	}
@@ -23,7 +33,7 @@ public class Card {
 	 * Get suit of the card.
 	 * @return suit of the card
 	 */
-	public final Suit getSuit() {
+	public final int getSuit() {
 		return this.suit;
 	}
 	
@@ -31,12 +41,19 @@ public class Card {
 	 * Get face value of the card.
 	 * @return face value of the card
 	 */
-	public final Face getFace() {
+	public final int getFace() {
 		return this.face;
 	}
 	
 	public boolean equals(Card other) {
 		return (this.suit == other.suit) 
 				&& (this.face == other.face); 
+	}
+	
+	public String toString() {
+		if (this.suit == Card.JOKER) {
+			return "Joker";
+		}
+		return FACE_NAMES[this.face] + " of " + SUIT_NAMES[this.suit];
 	}
 }
