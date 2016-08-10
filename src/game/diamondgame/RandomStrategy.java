@@ -1,20 +1,13 @@
 package game.diamondgame;
 
 import game.Strategy;
-import structures.Deck;
+import structures.Card;
 import structures.Hand;
 
-public class DiamondStrategy extends Strategy{
-
+public class RandomStrategy extends Strategy{
 	
-	DiamondStrategy()
-	{
+	public Card nextCard(Card onBid, Hand hand) {
+		hand.shuffle();
+		return hand.draw();
 	}
-	@Override
-	public int getNextCard() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	
-
 }
