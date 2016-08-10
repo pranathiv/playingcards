@@ -1,5 +1,7 @@
 package game;
 
-public interface Strategy {
+public abstract class Strategy {
+	
+	public abstract int getNextCard();
 
 }

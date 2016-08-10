@@ -32,19 +32,21 @@ public class Hand {
 		return cards.remove(c);
 	}
 	
-	/**
-	 * sorts the cards in the hand
-	 * @return returns the shuffled list of cards
-	 */
-	public List<Card> sort(){
-		return null;
+	public Card draw() {
+		Card c = this.cards.get(0);
+		this.removeCard(c);
+		return c;
 	}
 	
 	/*
 	 *  @return returns the card in the hand
 	 */
 	public List<Card> cardsInHand(){
-		return cards;
+		return new ArrayList<Card>(cards);
+	}
+	
+	public int size() {
+		return this.cards.size();
 	}
 	
 	public String toString() {

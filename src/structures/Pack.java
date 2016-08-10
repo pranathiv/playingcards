@@ -3,35 +3,22 @@ package structures;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Pack {
-	public List<Card> cards;
+public abstract class Pack {
+	List<Card> cards;
 	
-	public Pack(int j) {
-		this.cards = generate();
-		this.cards.addAll(jokers(j));
-	}
-	
-	public List<Card> generate() {
-		List<Card> cards = new ArrayList<Card>();
+	public void makePack() {
 		for (int i=Card.SPADES; i<=Card.DIAMONDS; i++) {
-			cards.addAll(generate(i));
+			for (int j=Card.TWO; j<=Card.ACE; j++) {
+				cards.add(new Card(i, j));
+			}
 		}
-		return cards;
 	}
 	
-	public List<Card> generate(int suit) {
-		List<Card> cards = new ArrayList<Card>();
-		for (int face = Card.ACE; face <= Card.KING; face++) {
-			cards.add(new Card(suit, face));
-		}
-		return cards;
+	public boolean addCard(Card c) {
+		return this.cards.add(c);
 	}
 	
-	public List<Card> jokers(int n) {
-		List<Card> cards = new ArrayList<Card>();
-		for (int i=0; i<n; i++) {
-			cards.add(new Card(Card.JOKER, Card.JOKER));
-		}
-		return cards;
+	public List<Card> getCards() {
+		return new ArrayList<Card>(this.cards);
 	}
 }
