@@ -12,84 +12,93 @@ import java.util.List;
 public class Deck {
 	private List<Card> cards;
 	
-	public Deck(List<Card> cards) {
-		this.cards = cards;
+	public Deck(int n) {
+		this.cards = new ArrayList<Card>();
+		addPacks(n, PackWithoutJoker.class);
 	}
 	
 	public Deck() {
+		this(1);
+	}
+	
+	public Deck(int n, int j) {
 		this.cards = new ArrayList<Card>();
+		addPacks(n, PackWithJoker.class);
 	}
 	
-	public Deck(int number, int jokers) {
-		this();
-		this.add(new Pack(jokers));
-		for (int i=1; i<number; i++) {
-			this.add(new Pack(0));
+	private boolean addPacks(int n, Class<? extends Pack> c) {
+		ArrayList<Card> packs = new ArrayList<Card>();
+		for (int i=0; i<n; i++) {
+			Pack pack;
+			try {
+				pack = c.newInstance();
+				packs.addAll(pack.getCards());
+			} catch (InstantiationException | IllegalAccessException e) {
+				e.printStackTrace();
+				return false;
+			}
 		}
-	}
-	
-	public boolean add(Card card) {
-		return this.cards.add(card);
-	}
-	
-	public boolean add(List<Card> cards) {
-		return this.cards.addAll(cards);
-	}
-	
-	public boolean add(Pack pack) {
-		return add(pack.cards);
+		this.cards.addAll(packs);
+		return true;
 	}
 	
 	public boolean remove(Card card) {
 		return this.cards.remove(card);
 	}
 	
-	public boolean removeAll(Card card) {
-		for (Card c : this.cards) {
-			if (c.equals(card)) {
-				this.cards.remove(c);
-			}
-		}
-		return true;
-	}
-	
-	public List<Card> get(int suit) {
-		ArrayList<Card> cardsSuit = new ArrayList<Card>();
+	public List<Card> getAndRemoveSuit(int suit) {
+		ArrayList<Card> cardsOfSuit = new ArrayList<Card>();
 		for (Card c : this.cards) {
 			if (c.getSuit() == suit) {
-				cardsSuit.add(c);
-				this.cards.remove(c);
+				cardsOfSuit.add(c);
+				this.remove(c);
 			}
 		}
-		return cardsSuit;
+		return cardsOfSuit;
+	}
+	
+	public void removeSuit(int suit) {
+		for (Card c : this.cards) {
+			if (c.getSuit() == suit) {
+				this.remove(c);
+			}
+		}
 	}
 	
 	public void shuffle() {
 		Collections.shuffle(this.cards);
 	}
 	
-	public List<Card> deal(int n) {
+	public List<Card> pick(int n) {
 		ArrayList<Card> hand = new ArrayList<Card>();
 		int count = 0;
 		if (n > this.cardsLeft()) {
 			return null;
 		}
 		while (count < n) {
-			Card card = this.cards.get(0);
+			Card card = draw();
 			hand.add(card);
-			this.remove(card);
 			count++;
 		}
 		return hand;
+	}
+	
+	public Card draw() {
+		Card c = this.cards.get(0);
+		this.remove(c);
+		return c;
 	}
 	
 	public int cardsLeft() {
 		return this.cards.size();
 	}
 	
+	public String toString() {
+		return this.cards.toString();
+	}
+	
 	public static void main(String[] args) {
-		Deck deck = new Deck(2, 4);
+		Deck deck = new Deck(2, 2);
 		deck.shuffle();
-		System.out.println(deck.deal(5));
 	}
 }

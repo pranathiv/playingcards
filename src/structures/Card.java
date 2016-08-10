@@ -1,19 +1,20 @@
 package structures;
 
 public class Card {
-	public static int ACE = 1;
+	public static int TWO = 2;
 	public static int JACK = 11;
 	public static int QUEEN = 12;
 	public static int KING = 13;
-	public static int JOKER = 14;
+	public static int ACE = 14;
+	public static int JOKER = 15;
 	
 	public static int SPADES = 0;
 	public static int HEARTS = 1;
 	public static int CLUBS = 2;
 	public static int DIAMONDS = 3;
 	
-	private static String[] FACE_NAMES = {"", "Ace", "Two", "Three", "Four", "Five", "Six",
-			"Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"};
+	private static String[] FACE_NAMES = {"", "", "Two", "Three", "Four", "Five", "Six",
+			"Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King", "Ace"};
 	private static String[] SUIT_NAMES = {"Spades", "Hearts", "Clubs", "Diamonds"};
 	
 	private int suit;
@@ -51,7 +52,7 @@ public class Card {
 	}
 	
 	public String toString() {
-		if (this.suit == Card.JOKER) {
+		if (this.face == Card.JOKER) {
 			return "Joker";
 		}
 		return FACE_NAMES[this.face] + " of " + SUIT_NAMES[this.suit];
